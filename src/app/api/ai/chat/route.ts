@@ -1,7 +1,10 @@
 import { getAuthUser, jsonResponse, getUserFamilyId } from '@/lib/api-helpers'
 import OpenAI from 'openai'
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+const openai = new OpenAI({
+  apiKey: process.env.DEEPSEEK_API_KEY,
+  baseURL: 'https://api.deepseek.com',
+})
 
 export async function POST(request: Request) {
   const { user, supabase, error } = await getAuthUser()
@@ -46,7 +49,7 @@ Help with meal planning, scheduling, task management, parenting advice, and gene
 
   try {
     const stream = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: 'deepseek-chat',
       messages: [
         { role: 'system', content: systemPrompt },
         ...messages,
