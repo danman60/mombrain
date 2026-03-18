@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse } from '@/lib/api-helpers'
 
 export async function GET(request: Request) {
+  console.log('[notifications GET] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -17,10 +18,12 @@ export async function GET(request: Request) {
   if (unreadOnly) query = query.eq('read', false)
 
   const { data } = await query
+  console.log('[notifications GET] success, count:', data?.length)
   return jsonResponse(data)
 }
 
 export async function PATCH(request: Request) {
+  console.log('[notifications PATCH] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -32,5 +35,6 @@ export async function PATCH(request: Request) {
     await supabase.from('mb_notifications').update({ read }).eq('id', id)
   }
 
+  console.log('[notifications PATCH] success, id:', id)
   return jsonResponse({ success: true })
 }

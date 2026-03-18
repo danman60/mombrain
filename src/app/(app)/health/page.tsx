@@ -158,7 +158,7 @@ export default function HealthPage() {
                     <XAxis dataKey="date" />
                     <YAxis domain={[0, 12]} />
                     <Tooltip />
-                    <Bar dataKey="hours" fill="#6C63FF" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="hours" fill="#E11D48" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               ) : (

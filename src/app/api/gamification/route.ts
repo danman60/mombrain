@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse } from '@/lib/api-helpers'
 
 export async function GET() {
+  console.log('[gamification GET] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -17,5 +18,6 @@ export async function GET() {
     .order('earned_at', { ascending: false })
     .limit(20)
 
+  console.log('[gamification GET] success, points:', data?.points, 'log count:', log?.length)
   return jsonResponse({ gamification: data, recent_activity: log })
 }

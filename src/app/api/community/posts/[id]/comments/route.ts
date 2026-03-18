@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse } from '@/lib/api-helpers'
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  console.log('[comments GET] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -12,10 +13,12 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     .eq('post_id', id)
     .order('created_at')
 
+  console.log('[comments GET] success, count:', data?.length)
   return jsonResponse(data)
 }
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  console.log('[comments POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -28,6 +31,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     .select()
     .single()
 
-  if (dbError) return jsonResponse({ error: dbError.message }, 500)
+  if (dbError) {
+    console.error('[comments POST] error:', dbError.message)
+    return jsonResponse({ error: dbError.message }, 500)
+  }
+  console.log('[comments POST] success, id:', data?.id)
   return jsonResponse(data, 201)
 }

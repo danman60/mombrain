@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse } from '@/lib/api-helpers'
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  console.log('[upvote POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -22,6 +23,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       const { data: post } = await supabase.from('mb_community_posts').select('upvotes').eq('id', id).single()
       if (post) await supabase.from('mb_community_posts').update({ upvotes: Math.max(0, post.upvotes - 1) }).eq('id', id)
     }
+    console.log('[upvote POST] removed upvote for post:', id)
     return jsonResponse({ upvoted: false })
   }
 
@@ -30,5 +32,6 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const { data: post } = await supabase.from('mb_community_posts').select('upvotes').eq('id', id).single()
   if (post) await supabase.from('mb_community_posts').update({ upvotes: post.upvotes + 1 }).eq('id', id)
 
+  console.log('[upvote POST] added upvote for post:', id)
   return jsonResponse({ upvoted: true })
 }

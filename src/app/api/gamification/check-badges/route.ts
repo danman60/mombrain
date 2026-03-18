@@ -9,6 +9,7 @@ const BADGE_DEFINITIONS = [
 ]
 
 export async function POST() {
+  console.log('[check-badges POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -20,7 +21,10 @@ export async function POST() {
     .eq('profile_id', user!.id)
     .single()
 
-  if (!gam) return jsonResponse({ error: 'No gamification record' }, 404)
+  if (!gam) {
+    console.error('[check-badges POST] no gamification record')
+    return jsonResponse({ error: 'No gamification record' }, 404)
+  }
 
   const currentBadges: string[] = (gam.badges as string[]) || []
   const newBadges: string[] = []
@@ -55,6 +59,7 @@ export async function POST() {
     await supabase.from('mb_gamification').update({ badges: allBadges }).eq('profile_id', user!.id)
   }
 
+  console.log('[check-badges POST] success, new badges:', newBadges.length)
   return jsonResponse({
     new_badges: newBadges.map((id) => BADGE_DEFINITIONS.find((b) => b.id === id)),
     all_badges: [...currentBadges, ...newBadges],

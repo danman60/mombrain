@@ -26,7 +26,7 @@ interface CalEvent {
   assigned_to: string | null
 }
 
-const COLORS = ['#6C63FF', '#FF6B8A', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899', '#06B6D4']
+const COLORS = ['#E11D48', '#F97316', '#10B981', '#8B5CF6', '#FB7185', '#06B6D4', '#F59E0B']
 
 export default function CalendarPage() {
   const family = useAppStore((s) => s.family)

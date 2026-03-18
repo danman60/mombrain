@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse, getUserFamilyId } from '@/lib/api-helpers'
 
 export async function GET(request: Request) {
+  console.log('[tasks GET] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -19,10 +20,12 @@ export async function GET(request: Request) {
   if (status) query = query.eq('status', status)
 
   const { data } = await query
+  console.log('[tasks GET] success, count:', data?.length)
   return jsonResponse(data)
 }
 
 export async function POST(request: Request) {
+  console.log('[tasks POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -36,11 +39,16 @@ export async function POST(request: Request) {
     .select()
     .single()
 
-  if (dbError) return jsonResponse({ error: dbError.message }, 500)
+  if (dbError) {
+    console.error('[tasks POST] error:', dbError.message)
+    return jsonResponse({ error: dbError.message }, 500)
+  }
+  console.log('[tasks POST] success, id:', data?.id)
   return jsonResponse(data, 201)
 }
 
 export async function PATCH(request: Request) {
+  console.log('[tasks PATCH] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -54,15 +62,21 @@ export async function PATCH(request: Request) {
     .select()
     .single()
 
-  if (dbError) return jsonResponse({ error: dbError.message }, 500)
+  if (dbError) {
+    console.error('[tasks PATCH] error:', dbError.message)
+    return jsonResponse({ error: dbError.message }, 500)
+  }
+  console.log('[tasks PATCH] success, id:', data?.id)
   return jsonResponse(data)
 }
 
 export async function DELETE(request: Request) {
+  console.log('[tasks DELETE] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
   const { id } = await request.json()
   await supabase.from('mb_tasks').delete().eq('id', id)
+  console.log('[tasks DELETE] success')
   return jsonResponse({ success: true })
 }

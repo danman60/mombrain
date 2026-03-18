@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse } from '@/lib/api-helpers'
 
 export async function GET() {
+  console.log('[profile GET] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -10,11 +11,16 @@ export async function GET() {
     .eq('id', user!.id)
     .single()
 
-  if (dbError) return jsonResponse({ error: dbError.message }, 500)
+  if (dbError) {
+    console.error('[profile GET] error:', dbError.message)
+    return jsonResponse({ error: dbError.message }, 500)
+  }
+  console.log('[profile GET] success')
   return jsonResponse(data)
 }
 
 export async function PATCH(request: Request) {
+  console.log('[profile PATCH] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -32,6 +38,10 @@ export async function PATCH(request: Request) {
     .select()
     .single()
 
-  if (dbError) return jsonResponse({ error: dbError.message }, 500)
+  if (dbError) {
+    console.error('[profile PATCH] error:', dbError.message)
+    return jsonResponse({ error: dbError.message }, 500)
+  }
+  console.log('[profile PATCH] success')
   return jsonResponse(data)
 }

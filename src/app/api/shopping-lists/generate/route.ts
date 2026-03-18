@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse, getUserFamilyId } from '@/lib/api-helpers'
 
 export async function POST(request: Request) {
+  console.log('[shopping-lists/generate POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -15,7 +16,10 @@ export async function POST(request: Request) {
     .eq('id', meal_plan_id)
     .single()
 
-  if (!mealPlan) return jsonResponse({ error: 'Meal plan not found' }, 404)
+  if (!mealPlan) {
+    console.error('[shopping-lists/generate POST] meal plan not found:', meal_plan_id)
+    return jsonResponse({ error: 'Meal plan not found' }, 404)
+  }
 
   // Collect all meal IDs from plan
   const mealIds = new Set<string>()
@@ -55,5 +59,6 @@ export async function POST(request: Request) {
     .select()
     .single()
 
+  console.log('[shopping-lists/generate POST] success, items:', items.length)
   return jsonResponse(list, 201)
 }

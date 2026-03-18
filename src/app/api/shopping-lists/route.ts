@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse, getUserFamilyId } from '@/lib/api-helpers'
 
 export async function GET() {
+  console.log('[shopping-lists GET] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -13,10 +14,12 @@ export async function GET() {
     .eq('family_id', familyId)
     .order('created_at', { ascending: false })
 
+  console.log('[shopping-lists GET] success, count:', data?.length)
   return jsonResponse(data)
 }
 
 export async function POST(request: Request) {
+  console.log('[shopping-lists POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -30,11 +33,16 @@ export async function POST(request: Request) {
     .select()
     .single()
 
-  if (dbError) return jsonResponse({ error: dbError.message }, 500)
+  if (dbError) {
+    console.error('[shopping-lists POST] error:', dbError.message)
+    return jsonResponse({ error: dbError.message }, 500)
+  }
+  console.log('[shopping-lists POST] success, id:', data?.id)
   return jsonResponse(data, 201)
 }
 
 export async function PATCH(request: Request) {
+  console.log('[shopping-lists PATCH] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -48,6 +56,10 @@ export async function PATCH(request: Request) {
     .select()
     .single()
 
-  if (dbError) return jsonResponse({ error: dbError.message }, 500)
+  if (dbError) {
+    console.error('[shopping-lists PATCH] error:', dbError.message)
+    return jsonResponse({ error: dbError.message }, 500)
+  }
+  console.log('[shopping-lists PATCH] success, id:', data?.id)
   return jsonResponse(data)
 }

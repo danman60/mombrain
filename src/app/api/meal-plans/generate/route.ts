@@ -7,6 +7,7 @@ const openai = new OpenAI({
 })
 
 export async function POST(request: Request) {
+  console.log('[meal-plans/generate POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -67,6 +68,7 @@ Where the numbers in "plan" are indexes into the "meals" array.`
     })
 
     const result = JSON.parse(completion.choices[0].message.content || '{}')
+    console.log('[meal-plans/generate POST] AI returned', result.meals?.length, 'meals')
 
     // Create meals in DB
     const mealIds: string[] = []
@@ -115,9 +117,10 @@ Where the numbers in "plan" are indexes into the "meals" array.`
       .select()
       .single()
 
+    console.log('[meal-plans/generate POST] success, meals created:', mealIds.length)
     return jsonResponse({ meal_plan: mealPlan, meals_created: mealIds.length })
   } catch (err) {
-    console.error('AI meal plan generation error:', err)
+    console.error('[meal-plans/generate POST] error:', err)
     return jsonResponse({ error: 'Failed to generate meal plan' }, 500)
   }
 }

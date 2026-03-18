@@ -29,6 +29,8 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
+  console.log('[middleware]', request.nextUrl.pathname, user ? 'authenticated' : 'anonymous')
+
   const isPublicRoute = publicRoutes.some(route =>
     request.nextUrl.pathname === route || request.nextUrl.pathname.startsWith('/api/auth/')
   )
@@ -36,12 +38,14 @@ export async function middleware(request: NextRequest) {
   if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
+    console.log('[middleware] redirecting to:', url.pathname)
     return NextResponse.redirect(url)
   }
 
   if (user && (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/register')) {
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard'
+    console.log('[middleware] redirecting to:', url.pathname)
     return NextResponse.redirect(url)
   }
 

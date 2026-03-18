@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse } from '@/lib/api-helpers'
 
 export async function POST(request: Request) {
+  console.log('[tasks/complete POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -12,7 +13,10 @@ export async function POST(request: Request) {
     .update({ status: 'done' })
     .eq('id', task_id)
 
-  if (taskError) return jsonResponse({ error: taskError.message }, 500)
+  if (taskError) {
+    console.error('[tasks/complete POST] error:', taskError.message)
+    return jsonResponse({ error: taskError.message }, 500)
+  }
 
   // Award points
   const points = 10
@@ -48,5 +52,6 @@ export async function POST(request: Request) {
       .eq('profile_id', user!.id)
   }
 
+  console.log('[tasks/complete POST] success, task:', task_id, 'points:', points)
   return jsonResponse({ success: true, points_earned: points })
 }

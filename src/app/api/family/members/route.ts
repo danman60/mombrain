@@ -1,6 +1,7 @@
 import { getAuthUser, jsonResponse, getUserFamilyId } from '@/lib/api-helpers'
 
 export async function GET() {
+  console.log('[family/members GET] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
@@ -12,5 +13,6 @@ export async function GET() {
     .select('id, profile_id, role, mb_profiles(display_name, avatar_url)')
     .eq('family_id', familyId)
 
+  console.log('[family/members GET] success, count:', data?.length)
   return jsonResponse(data)
 }

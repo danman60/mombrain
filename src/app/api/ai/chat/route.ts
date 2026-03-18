@@ -7,6 +7,7 @@ const openai = new OpenAI({
 })
 
 export async function POST(request: Request) {
+  console.log('[ai/chat POST] called')
   const { user, supabase, error } = await getAuthUser()
   if (error) return error
 
