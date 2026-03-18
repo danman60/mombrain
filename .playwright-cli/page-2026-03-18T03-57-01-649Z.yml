@@ -1,0 +1,5 @@
+- generic [active] [ref=e1]:
+  - region "Notifications alt+T"
+  - button "Share an idea or report a bug" [ref=e9] [cursor=pointer]:
+    - img [ref=e10]
+  - alert [ref=e12]

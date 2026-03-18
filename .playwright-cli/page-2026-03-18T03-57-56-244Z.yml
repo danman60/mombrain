@@ -1,0 +1,77 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e38]:
+    - complementary [ref=e40]:
+      - generic [ref=e41]:
+        - img [ref=e42]
+        - generic [ref=e50]: MomBrain
+      - navigation [ref=e51]:
+        - generic [ref=e52]:
+          - link "Dashboard" [ref=e53] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e54]:
+              - img [ref=e55]
+              - text: Dashboard
+          - link "Meals" [ref=e60] [cursor=pointer]:
+            - /url: /meals
+            - generic [ref=e61]:
+              - img [ref=e62]
+              - text: Meals
+          - link "Shopping" [ref=e64] [cursor=pointer]:
+            - /url: /shopping
+            - generic [ref=e65]:
+              - img [ref=e66]
+              - text: Shopping
+          - link "Calendar" [ref=e70] [cursor=pointer]:
+            - /url: /calendar
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - text: Calendar
+          - link "Tasks" [ref=e74] [cursor=pointer]:
+            - /url: /tasks
+            - generic [ref=e75]:
+              - img [ref=e76]
+              - text: Tasks
+          - link "AI Chat" [ref=e79] [cursor=pointer]:
+            - /url: /ai
+            - generic [ref=e80]:
+              - img [ref=e81]
+              - text: AI Chat
+          - link "Health" [ref=e83] [cursor=pointer]:
+            - /url: /health
+            - generic [ref=e84]:
+              - img [ref=e85]
+              - text: Health
+          - link "Community" [ref=e87] [cursor=pointer]:
+            - /url: /community
+            - generic [ref=e88]:
+              - img [ref=e89]
+              - text: Community
+          - link "Badges" [ref=e94] [cursor=pointer]:
+            - /url: /badges
+            - generic [ref=e95]:
+              - img [ref=e96]
+              - text: Badges
+          - link "Family" [ref=e102] [cursor=pointer]:
+            - /url: /family
+            - generic [ref=e103]:
+              - img [ref=e104]
+              - text: Family
+          - link "Profile" [ref=e107] [cursor=pointer]:
+            - /url: /profile
+            - generic [ref=e108]:
+              - img [ref=e109]
+              - text: Profile
+      - generic [ref=e112]:
+        - button "Dark Mode" [ref=e113]:
+          - img
+          - text: Dark Mode
+        - generic [ref=e114]:
+          - generic [ref=e116]: M
+          - paragraph [ref=e118]: Mom
+          - button [ref=e119]:
+            - img
+    - main [ref=e121]
+  - region "Notifications alt+T"
+  - button "Share an idea or report a bug" [ref=e34] [cursor=pointer]:
+    - img [ref=e35]
+  - alert [ref=e37]

@@ -1,0 +1,28 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - generic [ref=e14]: Welcome back
+      - generic [ref=e15]: Sign in to your MomBrain account
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]: Email
+          - textbox "Email" [ref=e20]:
+            - /placeholder: mom@example.com
+        - generic [ref=e21]:
+          - generic [ref=e22]: Password
+          - textbox "Password" [ref=e23]
+        - button "Sign In" [ref=e24]
+      - generic [ref=e29]: Or continue with
+      - button "Google" [ref=e30]:
+        - img
+        - text: Google
+    - paragraph [ref=e32]:
+      - text: Don't have an account?
+      - link "Sign up" [ref=e33] [cursor=pointer]:
+        - /url: /register
+  - region "Notifications alt+T"
+  - button "Share an idea or report a bug" [ref=e34] [cursor=pointer]:
+    - img [ref=e35]
+  - alert [ref=e37]

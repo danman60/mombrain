@@ -8,7 +8,7 @@ AI-powered family productivity app for moms. Meal planning, scheduling, task man
 - **AI:** DeepSeek via OpenAI SDK compatibility (baseURL: api.deepseek.com)
 - **State:** Zustand (client-side), Supabase (server-side)
 - **Auth:** Supabase Auth (email + Google OAuth)
-- **Deployment:** Vercel (TBD)
+- **Deployment:** Vercel — https://mombrain.vercel.app
 
 ## Supabase Project
 - **MCP:** `supabase-CCandSS`

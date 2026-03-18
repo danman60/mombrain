@@ -1,0 +1,172 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e38]:
+    - complementary [ref=e40]:
+      - generic [ref=e41]:
+        - img [ref=e42]
+        - generic [ref=e50]: MomBrain
+      - navigation [ref=e51]:
+        - generic [ref=e52]:
+          - link "Dashboard" [ref=e53] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e54]:
+              - img [ref=e55]
+              - text: Dashboard
+          - link "Meals" [ref=e60] [cursor=pointer]:
+            - /url: /meals
+            - generic [ref=e61]:
+              - img [ref=e62]
+              - text: Meals
+          - link "Shopping" [ref=e64] [cursor=pointer]:
+            - /url: /shopping
+            - generic [ref=e65]:
+              - img [ref=e66]
+              - text: Shopping
+          - link "Calendar" [ref=e70] [cursor=pointer]:
+            - /url: /calendar
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - text: Calendar
+          - link "Tasks" [ref=e74] [cursor=pointer]:
+            - /url: /tasks
+            - generic [ref=e75]:
+              - img [ref=e76]
+              - text: Tasks
+          - link "AI Chat" [ref=e79] [cursor=pointer]:
+            - /url: /ai
+            - generic [ref=e80]:
+              - img [ref=e81]
+              - text: AI Chat
+          - link "Health" [ref=e83] [cursor=pointer]:
+            - /url: /health
+            - generic [ref=e84]:
+              - img [ref=e85]
+              - text: Health
+          - link "Community" [ref=e87] [cursor=pointer]:
+            - /url: /community
+            - generic [ref=e88]:
+              - img [ref=e89]
+              - text: Community
+          - link "Badges" [ref=e94] [cursor=pointer]:
+            - /url: /badges
+            - generic [ref=e95]:
+              - img [ref=e96]
+              - text: Badges
+          - link "Family" [ref=e102] [cursor=pointer]:
+            - /url: /family
+            - generic [ref=e103]:
+              - img [ref=e104]
+              - text: Family
+          - link "Profile" [ref=e107] [cursor=pointer]:
+            - /url: /profile
+            - generic [ref=e108]:
+              - img [ref=e109]
+              - text: Profile
+      - generic [ref=e112]:
+        - button "Dark Mode" [ref=e113]:
+          - img
+          - text: Dark Mode
+        - generic [ref=e114]:
+          - generic [ref=e116]: S
+          - paragraph [ref=e118]: Sarah Johnson
+          - button [ref=e119]:
+            - img
+    - main [ref=e121]:
+      - generic [ref=e122]:
+        - generic [ref=e129]:
+          - heading "Good morning, Sarah Johnson" [level=1] [ref=e130]
+          - paragraph [ref=e131]: Here's your family overview for today.
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - generic [ref=e135]:
+              - img [ref=e136]
+              - text: Upcoming Events
+            - generic [ref=e138]:
+              - generic [ref=e141]:
+                - paragraph [ref=e142]: Grocery Run
+                - paragraph [ref=e143]:
+                  - img [ref=e144]
+                  - text: Mar 18, 7:50 AM
+              - generic [ref=e149]:
+                - paragraph [ref=e150]: Emma Dance Class
+                - paragraph [ref=e151]:
+                  - img [ref=e152]
+                  - text: Mar 19, 7:50 PM
+              - generic [ref=e157]:
+                - paragraph [ref=e158]: Pediatrician — Liam Checkup
+                - paragraph [ref=e159]:
+                  - img [ref=e160]
+                  - text: Mar 20, 1:50 PM
+              - link "View All" [ref=e163] [cursor=pointer]:
+                - /url: /calendar
+                - button "View All" [ref=e164]
+          - generic [ref=e165]:
+            - generic [ref=e167]:
+              - img [ref=e168]
+              - text: Tasks
+            - generic [ref=e171]:
+              - generic [ref=e172]:
+                - paragraph [ref=e173]: Buy Emma new shoes
+                - generic [ref=e174]: high
+              - generic [ref=e175]:
+                - paragraph [ref=e176]: Meal prep for the week
+                - generic [ref=e177]: high
+              - generic [ref=e178]:
+                - paragraph [ref=e179]: Organize playroom
+                - generic [ref=e180]: medium
+              - link "View All" [ref=e181] [cursor=pointer]:
+                - /url: /tasks
+                - button "View All" [ref=e182]
+          - generic [ref=e183]:
+            - generic [ref=e185]:
+              - img [ref=e186]
+              - text: Today's Meals
+            - generic [ref=e188]:
+              - paragraph [ref=e189]: No meal plan for today
+              - link "Generate Meal Plan" [ref=e190] [cursor=pointer]:
+                - /url: /meals/generate
+                - button "Generate Meal Plan" [ref=e191]
+          - generic [ref=e192]:
+            - generic [ref=e194]:
+              - img [ref=e195]
+              - text: Your Progress
+            - generic [ref=e201]:
+              - generic [ref=e202]:
+                - generic [ref=e203]:
+                  - generic [ref=e204]: Points
+                  - generic [ref=e205]: "145"
+                - generic [ref=e206]:
+                  - generic [ref=e207]: Streak
+                  - generic [ref=e208]:
+                    - img [ref=e209]
+                    - text: 7 days
+                - generic [ref=e211]:
+                  - generic [ref=e212]: Level
+                  - generic [ref=e213]: "2"
+              - link "View Badges" [ref=e214] [cursor=pointer]:
+                - /url: /badges
+                - button "View Badges" [ref=e215]
+        - generic [ref=e216]:
+          - link "Add Task" [ref=e217] [cursor=pointer]:
+            - /url: /tasks
+            - button "Add Task" [ref=e218]:
+              - img
+              - text: Add Task
+          - link "Add Event" [ref=e219] [cursor=pointer]:
+            - /url: /calendar
+            - button "Add Event" [ref=e220]:
+              - img
+              - text: Add Event
+          - link "Ask AI" [ref=e221] [cursor=pointer]:
+            - /url: /ai
+            - button "Ask AI" [ref=e222]:
+              - img
+              - text: Ask AI
+          - link "Log Health" [ref=e223] [cursor=pointer]:
+            - /url: /health
+            - button "Log Health" [ref=e224]:
+              - img
+              - text: Log Health
+  - region "Notifications alt+T"
+  - button "Share an idea or report a bug" [ref=e34] [cursor=pointer]:
+    - img [ref=e35]
+  - alert [ref=e37]
