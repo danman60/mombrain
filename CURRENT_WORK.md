@@ -39,3 +39,8 @@ Execute phases 1-8 of overnight build plan (see docs/plans/2026-03-18-overnight-
 - Font must change from Inter to something distinctive (Bootstrap anti-pattern #26)
 - API pattern is route handlers (not server actions) — keep this pattern, don't migrate
 - Build plan has checkpoint commits after each phase for recovery
+
+## fable-night-1029 (2026-10-30, fable-mombrain window) — branch only, NOT merged
+- API accepts a validated Supabase Bearer token (mobile app has no cookies); middleware validates before skipping /login redirect; xreview fixed invalid-bearer bypass
+- DeepSeek client built per request (module-level init broke env-less builds)
+- NEXT STEP: owner decides Preview env vars (DECISIONS) or merges to main; then verify mobile AI chat end to end
