@@ -1,7 +1,8 @@
 import { getAuthUser, jsonResponse, getUserFamilyId } from '@/lib/api-helpers'
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
+// Built per request: a module-level client throws at build time when the key is unset (preview builds)
+const deepseek = () => new OpenAI({
   apiKey: process.env.DEEPSEEK_API_KEY,
   baseURL: 'https://api.deepseek.com',
 })
@@ -49,7 +50,7 @@ ${contextStr}
 Help with meal planning, scheduling, task management, parenting advice, and general family organization. Keep responses concise and actionable. Use the user's family context to personalize your responses.`
 
   try {
-    const stream = await openai.chat.completions.create({
+    const stream = await deepseek().chat.completions.create({
       model: 'deepseek-chat',
       messages: [
         { role: 'system', content: systemPrompt },

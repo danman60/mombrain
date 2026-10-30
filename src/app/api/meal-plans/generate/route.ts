@@ -1,7 +1,8 @@
 import { getAuthUser, jsonResponse, getUserFamilyId } from '@/lib/api-helpers'
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
+// Built per request: a module-level client throws at build time when the key is unset (preview builds)
+const deepseek = () => new OpenAI({
   apiKey: process.env.DEEPSEEK_API_KEY,
   baseURL: 'https://api.deepseek.com',
 })
@@ -57,7 +58,7 @@ Return ONLY valid JSON in this exact format:
 Where the numbers in "plan" are indexes into the "meals" array.`
 
   try {
-    const completion = await openai.chat.completions.create({
+    const completion = await deepseek().chat.completions.create({
       model: 'deepseek-chat',
       messages: [
         { role: 'system', content: 'You are a meal planning assistant. Return only valid JSON.' },
