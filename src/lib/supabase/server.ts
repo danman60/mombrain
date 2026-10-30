@@ -1,7 +1,22 @@
 import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
+import { cookies, headers } from 'next/headers'
+
+// Bearer token from the mobile app (no cookies there); RLS runs as that user.
+export async function getBearerToken() {
+  const auth = (await headers()).get('authorization')
+  return auth?.startsWith('Bearer ') ? auth.slice(7) : null
+}
 
 export async function createClient() {
+  const token = await getBearerToken()
+  if (token) {
+    return createSupabaseClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      { global: { headers: { Authorization: `Bearer ${token}` } }, auth: { persistSession: false } }
+    )
+  }
   const cookieStore = await cookies()
 
   return createServerClient(

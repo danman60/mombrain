@@ -35,7 +35,12 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname === route || request.nextUrl.pathname.startsWith('/api/auth/')
   )
 
-  if (!user && !isPublicRoute) {
+  // Mobile app calls /api with a Bearer token (no cookies); let it through only if the token is valid
+  const bearer = request.headers.get('authorization')
+  const isBearerApi = !user && request.nextUrl.pathname.startsWith('/api/') && !!bearer?.startsWith('Bearer ') &&
+    !!(await supabase.auth.getUser(bearer.slice(7))).data.user
+
+  if (!user && !isPublicRoute && !isBearerApi) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     console.log('[middleware] redirecting to:', url.pathname)
